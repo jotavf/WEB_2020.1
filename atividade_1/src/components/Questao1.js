@@ -39,4 +39,5 @@ function AllFunc() {
     );
 }
 
+
 export default AllFunc;
