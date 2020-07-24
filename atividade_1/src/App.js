@@ -1,17 +1,19 @@
 import React from 'react';
 import './App.css';
-import Questao3 from './components/Questao3'
-import Questao3_1 from './components/Questao3_1'
+import Questao1 from './components/questao1/Questao1'
+import Questao2 from './components/questao2/Questao2'
+import Questao3 from './components/questao3/Questao3'
+import Questao4 from './components/questao4/Questao4'
+
 
 function App() {
   return (
     <div className="App">
-        <Questao3>
-          <Questao3_1 name="João Victor Falcão"/>
-          <Questao3_1 course="Eng. de Software"/>
-          <Questao3_1 city="Quixeramobim"/>
-        </Questao3>
-    </div>
+        <Questao1 />
+        <Questao2 />
+        <Questao3 />
+        <Questao4 />
+    </div>  
   );
 }
 

@@ -13,25 +13,26 @@ import React from 'react';
 // funções \/
 function Name(){
     return(
-        <h1>João Victor Falcão</h1>
+        <h3>Nome: João Victor Falcão</h3>
     );
 }
 
 function Course(){
     return(
-        <h1>Eng. de Software</h1>
+        <h3>Curso: Eng. de Software</h3>
     );
 }
 
 function City(){
     return(
-        <h1>Quixeramobim</h1>
+        <h3>Cidade natal: Quixeramobim</h3>
     );
 }
 
 function AllFunc() {
     return(
         <div>
+            <header>Questão 1</header>
             <Name />
             <Course />
             <City />
