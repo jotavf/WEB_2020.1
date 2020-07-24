@@ -11,7 +11,6 @@ import React from 'react';
 // }
 
 // funções \/
-{
 function Name(){
     return(
         <h1>João Victor Falcão</h1>
@@ -28,7 +27,6 @@ function City(){
     return(
         <h1>Quixeramobim</h1>
     );
-}
 }
 
 function AllFunc() {
