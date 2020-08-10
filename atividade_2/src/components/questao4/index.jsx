@@ -1,5 +1,6 @@
 import React from 'react';
 import Arena from './components/Arena';
+import {Hero, Enemy} from '../questao2'
 
 function Questao4(){
     return (

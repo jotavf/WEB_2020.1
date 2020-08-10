@@ -29,4 +29,4 @@ function Arena(props){
     )
 }
 
-export default Arena;
+export {Arena, Hero, Enemy};
