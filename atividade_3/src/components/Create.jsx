@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios'
 
 
 export default class Create extends Component {
@@ -27,9 +28,18 @@ export default class Create extends Component {
 
   onSubmit(e){
       e.preventDefault()
-      console.log('Nome: ' + this.state.nome)
-      console.log('Curso: ' + this.state.curso)
-      console.log('IRA: ' + this.state.IRA)
+      const newEstudante = {nome:this.state.nome,
+                            curso:this.state.curso,
+                            IRA:this.state.IRA}
+    
+      axios.post('http://localhost:3001/estudantes', newEstudante)
+      .then((res) => {
+          console.log(res.data.id)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    
       this.setState({nome: '', curso: '', IRA: ''})
   }
 

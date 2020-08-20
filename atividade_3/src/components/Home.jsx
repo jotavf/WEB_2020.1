@@ -4,7 +4,7 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                <p>Home component!!</p>
+                <h4>CRUD da cadeira de Desenvolvimento de software para WEB!!</h4>
             </div>
         )
     }
