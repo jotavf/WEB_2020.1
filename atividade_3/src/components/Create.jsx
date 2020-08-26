@@ -6,11 +6,11 @@ export default class Create extends Component {
 
   constructor(props) {
       super(props);
-      this.state = {nome:'', curso:'', IRA:''}
+      this.state = {nome:'', curso:'', capacidade: 0}
 
       this.setNome = this.setNome.bind(this)
       this.setCurso = this.setCurso.bind(this)
-      this.setIRA = this.setIRA.bind(this)
+      this.setCapacidade = this.setCapacidade.bind(this)
       this.onSubmit = this.onSubmit.bind(this)
   }
 
@@ -22,17 +22,17 @@ export default class Create extends Component {
       this.setState({curso:e.target.value})
   }
 
-  setIRA(e){
-      this.setState({IRA:e.target.value})
+  setCapacidade(e){
+      this.setState({capacidade:e.target.value})
   }
 
   onSubmit(e){
       e.preventDefault()
-      const newEstudante = {nome:this.state.nome,
+      const disciplina = {nome:this.state.nome,
                             curso:this.state.curso,
-                            IRA:this.state.IRA}
+                            capacidade: parseInt(this.state.capacidade,10)}
     
-      axios.post('http://localhost:3001/estudantes', newEstudante)
+      axios.post('http://localhost:3001/disciplinas',disciplina)
       .then((res) => {
           console.log(res.data.id)
       })
@@ -40,20 +40,20 @@ export default class Create extends Component {
         console.log(err)
       })
     
-      this.setState({nome: '', curso: '', IRA: ''})
+      this.setState({nome: '', curso: '', capacidade: 0})
   }
 
   render() {
     return (
       <div style={{ marginTop: 10 }}>
-        <h3>Criar estudante</h3>
+        <h3>Criar disciplina</h3>
         <form onSubmit={this.onSubmit}>
           <div className="from-group">
             <label>Nome: </label>
             <input
               type="text"
               className="form-control"
-              placeholder="Exemplo: Cleitin"
+              placeholder="Exemplo: Desenvolvimento de Software p/ WEB"
               value={this.state.nome}
               onChange={this.setNome}
             />
@@ -69,13 +69,13 @@ export default class Create extends Component {
             />
           </div>
           <div className="from-group">
-            <label>IRA: </label>
+            <label>Capacidade: </label>
             <input
-              type="text"
+              type="number"
               className="form-control"
-              placeholder="Exemplo: 8.5"
-              value={this.state.IRA}
-              onChange={this.setIRA}
+              placeholder="Exemplo: 50"
+              value={this.state.capacidade}
+              onChange={this.setCapacidade}
             />
             </div>
             <div className="form-group">

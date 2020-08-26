@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 export default class TableRow extends Component {
     
@@ -9,9 +10,9 @@ export default class TableRow extends Component {
     }
     
     apagar() {
-        axios.delete('http://localhost:3001/estudantes/'+this.props.estudante.id)
+        axios.delete('http://localhost:3001/disciplinas/'+this.props.disciplina.id)
         .then((res) => {
-            console.log("Estudante: " + this.props.estudante.nome + " foi apagado")
+            console.log("Disciplina: " + this.props.disciplina.nome + " foi apagado")
         })
         .catch((err) => {
             console.log(err)
@@ -22,19 +23,20 @@ export default class TableRow extends Component {
         return (
             <tr>
                 <td>
-                    {this.props.estudante.id}
+                    {this.props.disciplina.id}
                 </td>
                 <td>
-                    {this.props.estudante.nome}
+                    {this.props.disciplina.nome}
                 </td>
                 <td>
-                    {this.props.estudante.curso}
+                    {this.props.disciplina.curso}
                 </td>
                 <td>
-                    {this.props.estudante.IRA}
+                    {this.props.disciplina.capacidade}
                 </td>
                 <td style={{textAlign: "center"}}>
-                    <button className="btn btn-primary">Editar</button>
+                    <Link to={`/edit/${this.props.disciplina.id}`} 
+                    className="btn btn-primary">Editar</Link>
                 </td>
                 <td style={{textAlign: "center"}}>
                     <button onClick={this.apagar} className="btn btn-danger">Apagar</button>

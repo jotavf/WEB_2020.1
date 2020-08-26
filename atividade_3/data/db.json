@@ -26,5 +26,13 @@
     }
   ],
   "cursos": [],
-  "something": []
+  "something": [],
+  "disciplinas": [
+    {
+      "nome": "Desenvolvimento de Software p/ WEB",
+      "curso": "Eng. de Software",
+      "capacidade": 100,
+      "id": 1
+    }
+  ]
 }
