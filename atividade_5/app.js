@@ -21,6 +21,6 @@ app.use((req, res, next) => {
     next()
 }) 
 
-app.use('/disciplina', DisciplinaRoute)
+app.use('/disciplinas', DisciplinaRoute)
 
 module.exports = app;

@@ -16,12 +16,12 @@ router.put('/update/:id', (req, res, next) => {
     return res.json(disciplina)
 })
 
-router.put('/delete/:id', (req, res, next) => {
-    const disciplina = DisciplinaService.delete(req.params.id)
+router.delete('/delete/:id', (req, res, next) => {
+    const ok = DisciplinaService.delete(req.params.id)
     if ( ok )
-        return res.json({success: true, message: "Excluído com sucesso"})
+        return res.json({success: true })
     else
-        return res.json({success: false, message: "Não foi possível excluir"})
+        return res.json({success: false })
 })
 
 router.get('/retrieve/:id', (req, res, next) => {
