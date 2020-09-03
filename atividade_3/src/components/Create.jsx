@@ -32,9 +32,9 @@ export default class Create extends Component {
                             curso:this.state.curso,
                             capacidade: parseInt(this.state.capacidade,10)}
     
-      axios.post('http://localhost:3001/disciplinas',disciplina)
+      axios.post('http://localhost:3002/disciplinas/register',disciplina)
       .then((res) => {
-          console.log(res.data.id)
+          console.log(res.data._id)
       })
       .catch((err) => {
         console.log(err)
