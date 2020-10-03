@@ -1,68 +1,69 @@
 import React, { Component } from "react";
-import FirebaseContext from '../utils/FirebaseContext'
+import FirebaseContext from "../utils/FirebaseContext";
 
 const EditPage = (props) => (
   <FirebaseContext.Consumer>
-      { contexto => <Edit firebase={contexto} id={props.match.params.id} /> }
+    {(contexto) => <Edit firebase={contexto} id={props.match.params.id} />}
   </FirebaseContext.Consumer>
-)
+);
 
 class Edit extends Component {
-
   constructor(props) {
-      super(props);
-      this.state = {nome:'', curso:'', capacidade: 0}
+    super(props);
+    this.state = { nome: "", curso: "", capacidade: 0 };
 
-      this.setNome = this.setNome.bind(this)
-      this.setCurso = this.setCurso.bind(this)
-      this.setCapacidade = this.setCapacidade.bind(this)
-      this.onSubmit = this.onSubmit.bind(this)
+    this.setNome = this.setNome.bind(this);
+    this.setCurso = this.setCurso.bind(this);
+    this.setCapacidade = this.setCapacidade.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  setNome(e){
-      this.setState({nome:e.target.value}) 
+  setNome(e) {
+    this.setState({ nome: e.target.value });
   }
 
-  setCurso(e){
-      this.setState({curso:e.target.value})
+  setCurso(e) {
+    this.setState({ curso: e.target.value });
   }
 
-  setCapacidade(e){
-      this.setState({capacidade:e.target.value})
+  setCapacidade(e) {
+    this.setState({ capacidade: e.target.value });
   }
 
-  componentDidMount(){
-    this.props.firebase.getFirestore().collection('disciplinas').doc(this.props.id).get()
-    .then(
-      (doc) => {
+  componentDidMount() {
+    this.props.firebase
+      .getFirestore()
+      .collection("disciplinas")
+      .doc(this.props.id)
+      .get()
+      .then((doc) => {
         this.setState({
-          nome:doc.data().nome,
+          nome: doc.data().nome,
           curso: doc.data().curso,
-          capacidade:doc.data().capacidade
-        })
-      }
-    )
-    .catch(err => console.log(err))
+          capacidade: doc.data().capacidade,
+        });
+      })
+      .catch((err) => console.log(err));
   }
 
-  onSubmit(e){
-    e.preventDefault()
-    this.props.firebase.getFirestore().collection('disciplinas').doc(this.props.id).set(
-      {
+  onSubmit(e) {
+    e.preventDefault();
+    this.props.firebase
+      .getFirestore()
+      .collection("disciplinas")
+      .doc(this.props.id)
+      .set({
         nome: this.state.nome,
         curso: this.state.curso,
-        capacidade: this.state.capacidade
-      }
-    )
-    .then(() => {
-      console.log("Estudante atualizado")
-    })
-    .catch(err => console.log(err))
+        capacidade: this.state.capacidade,
+      })
+      .then(() => {
+        console.log("Estudante atualizado");
+      })
+      .catch((err) => console.log(err));
 
-    this.setState({nome:'', curso:'', capacidade: 0})
-    
+    this.setState({ nome: "", curso: "", capacidade: 0 });
   }
-
 
   render() {
     return (
@@ -98,18 +99,14 @@ class Edit extends Component {
               value={this.state.capacidade}
               onChange={this.setCapacidade}
             />
-            </div>
-            <div className="form-group">
-                <input 
-                  type="submit" 
-                  value="Editar"
-                  className="btn btn-primary"
-                />
-            </div>
+          </div>
+          <div className="form-group">
+            <input type="submit" value="Editar" className="btn btn-primary" />
+          </div>
         </form>
       </div>
     );
   }
 }
 
-export default EditPage
+export default EditPage;
