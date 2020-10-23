@@ -1,4 +1,4 @@
-import {SIGNUP_SUCCESS, SIGNUP_ERROR, SIGNIN_SUCCESS, SIGNIN_ERROR} from './actionTypes'
+import {SIGNUP_SUCCESS, SIGNUP_ERROR, SIGNIN_SUCCESS, SIGNIN_ERROR, SIGNOUT_SUCCESS, SIGNOUT_ERROR} from './actionTypes'
 import firebase from '../../utils/Firebase'
 
 export const signup = (email, password) => {
@@ -79,6 +79,38 @@ export const signin = (email,password,callback) => {
             dispatch({
                 type: SIGNIN_ERROR,
                 payload: { authMsg: `Erro no login`}
+            })
+        }
+    }
+}
+
+export const signout = (callback) => {
+    return dispatch => {
+        try{
+            firebase.auth().signOut()
+            .then(
+                ()=> {
+                    dispatch({
+                        type: SIGNOUT_SUCCESS,
+                        payload: { authMsg: `Logout com sucesso`}
+                    })
+                    callback()
+                }
+            )
+            .catch(
+                (error) => {
+                    dispatch({
+                        type: SIGNOUT_ERROR,
+                        payload: { authMsg: `Erro no logout`}
+                    })
+                    callback()
+                }
+            )
+        }
+        catch{
+            dispatch({
+                type: SIGNOUT_ERROR,
+                payload: { authMsg: `Erro no logout`}
             })
         }
     }

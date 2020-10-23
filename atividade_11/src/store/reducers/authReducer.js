@@ -1,4 +1,4 @@
-import {SIGNUP_SUCCESS,SIGNUP_ERROR, SIGNIN_SUCCESS, SIGNIN_ERROR} from '../actions/actionTypes'
+import {SIGNUP_SUCCESS,SIGNUP_ERROR, SIGNIN_SUCCESS, SIGNIN_ERROR, SIGNOUT_SUCCESS, SIGNOUT_ERROR} from '../actions/actionTypes'
 
 const INITIAL_STATE = {
     authMsg: null,
@@ -26,6 +26,16 @@ export default function (state = INITIAL_STATE, action) {
                 user: action.payload.userMail
             }
         case SIGNIN_ERROR:
+            return {
+                ...state,
+                authMsg: action.payload.authMsg
+            }
+        case SIGNOUT_SUCCESS:
+            return {
+                user: null,
+                authMsg: action.payload.authMsg,
+            }
+        case SIGNOUT_ERROR:
             return {
                 ...state,
                 authMsg: action.payload.authMsg
