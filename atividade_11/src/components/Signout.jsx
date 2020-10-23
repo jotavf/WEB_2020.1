@@ -10,6 +10,9 @@ class Signout extends Component {
         if(this.props.firebaseAuth.isLoaded && this.props.firebaseAuth.isEmpty){
             this.props.history.push('/signin')
         }
+        if(!this.props.verified){
+            this.props.history.push('/signin')
+        }
     }
 
     logout(){
@@ -34,7 +37,8 @@ class Signout extends Component {
 function mapStateToProps(state) {
     return {
       userMsg: state.authReducer.authMsg,
-      firebaseAuth: state.firebaseReducer.auth
+      firebaseAuth: state.firebaseReducer.auth,
+      verified: state.authReducer.verified
     }
   }
 
