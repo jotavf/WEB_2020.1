@@ -1,4 +1,4 @@
-import {SIGNUP_SUCCESS, SIGNUP_ERROR} from './actionTypes'
+import {SIGNUP_SUCCESS, SIGNUP_ERROR, SIGNIN_SUCCESS, SIGNIN_ERROR} from './actionTypes'
 import firebase from '../../utils/Firebase'
 
 export const signup = (email, password) => {
@@ -34,7 +34,7 @@ export const signup = (email, password) => {
                 (error) => {
                     dispatch({
                         type: SIGNUP_ERROR,
-                        payload: { authMessage: `Erro no cadastro: ${error}`}
+                        payload: { authMsg: `Erro no cadastro: ${error}`}
                     })
                 }
             )
@@ -42,9 +42,44 @@ export const signup = (email, password) => {
         catch(error){
             dispatch({
                 type: SIGNUP_ERROR,
-                payload: { authMessage: `Erro no cadastro: ${error}`}
+                payload: { authMsg: `Erro no cadastro: ${error}`}
             })
         }
 
+    }
+}
+
+export const signin = (email,password,callback) => {
+    return dispatch => {
+        try{
+            firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(
+                (user) => {
+                    dispatch({
+                        type: SIGNIN_SUCCESS,
+                        payload: {
+                            authMsg: `Login efetuado com sucesso! Bem-vindo`,
+                            userMail: user.email
+                        }
+                    })
+                    callback()
+                }
+            )
+            .catch(
+                (error) => {
+                    dispatch({
+                        type: SIGNIN_ERROR,
+                        payload: { authMsg: `Erro no login: ${error}`}
+                    })
+                    callback()
+                }
+            )
+        }
+        catch{
+            dispatch({
+                type: SIGNIN_ERROR,
+                payload: { authMsg: `Erro no login`}
+            })
+        }
     }
 }

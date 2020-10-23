@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 export default class Card extends Component {
     render() {
         return(
-            <div class="content">
-                <div class="card">
-                    <div class="card-header">
+            <div className="content">
+                <div className="card">
+                    <div className="card-header">
                         {this.props.title}
                     </div>
-                    <div class="card-body">
+                    <div className="card-body">
                         {this.props.children}
                     </div>
                 </div>
